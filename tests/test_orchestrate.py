@@ -400,8 +400,9 @@ class BackgroundTests(IsolatedTestCase):
         orchestrate.release_lock()
         self.assertTrue(orchestrate.acquire_lock(now=2000.0))
         lock = orchestrate.lock_path()
-        lock.write_text(json.dumps({"pid": 99999999, "ts": 2000.0}))           # dead pid
-        self.assertTrue(orchestrate.acquire_lock(now=2001.0))
+        if sys.platform != "win32":  # Windows skips PID probing (os.kill would terminate): a crashed holder waits out LOCK_STALE_S
+            lock.write_text(json.dumps({"pid": 99999999, "ts": 2000.0}))       # dead pid
+            self.assertTrue(orchestrate.acquire_lock(now=2001.0))
         lock.write_text(json.dumps({"pid": os.getpid(), "ts": 0.0}))           # alive but stale
         self.assertTrue(orchestrate.acquire_lock(now=orchestrate.LOCK_STALE_S + 10))
 
