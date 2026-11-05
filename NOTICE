@@ -1,0 +1,25 @@
+SkillEvo
+Copyright (c) 2026 SkillEvo contributors. Licensed under the MIT License (see LICENSE).
+
+This project reuses ideas and file formats from the following open-source projects. No third-party source
+code is vendored in this repository.
+
+1. ECC (Everything Claude Code) - https://github.com/affaan-m/ECC
+   Copyright (c) 2026 Affaan Mustafa. MIT License.
+   Used for: the instinct file format and skill-run record format read by `skillevo import-ecc`
+   (src/skillevo/importers.py follows the instinct file layout used by ECC's instinct-cli.py), and the design
+   idea of per-skill version snapshots with rollback (reimplemented in Python in src/skillevo/versioning.py).
+   ECC is NOT a dependency. It is only fetched by scripts/fetch_ecc_corpus.py as an optional test corpus,
+   into a git-ignored directory, pinned to a specific commit.
+
+2. anthropics/skills (skill-creator) - https://github.com/anthropics/skills
+   Apache License 2.0.
+   Used for: the shape of evals.json (examples/evals.json is a simplified variant) and the general skill
+   naming/description rules. The validation rules in src/skillevo/skills.py are an independent, deliberately
+   more lenient reimplementation; no code was copied.
+
+3. claude-mem - https://github.com/thedotmack/claude-mem (Apache License 2.0)
+   Design reference only (SQLite + FTS5 storage with a budgeted injection at session start). No code used.
+
+The MIT and Apache-2.0 license texts of the projects above apply to their respective works. If you
+redistribute modified copies of any of those works, include their license text as they require.

@@ -1,0 +1,58 @@
+# Copy to ~/.config/skillevo/config.toml (user) or <project>/.skillevo/config.toml (project).
+# Project settings override user settings. All keys are optional; these are the defaults unless noted.
+
+[policy]
+mode = "review-only"          # review-only | approval-required | autonomous
+
+[retrieval]
+max_chars = 1800              # hard cap on text injected into a prompt
+max_items = 3
+min_terms = 2                 # a stored note must share at least this many words with the prompt
+
+[collection]
+enabled = true
+retention_days = 90
+max_payload_chars = 240
+
+[detection]
+min_pattern_sessions = 3      # repeated failures/workflows must appear in this many sessions
+min_cluster_size = 3          # related experiences needed before proposing a skill
+candidate_salience = 0.9      # a single lesson this important can also become a skill candidate
+
+[llm]
+enabled = false               # opt in to `claude -p` calls; counted and capped locally
+max_calls_per_day = 150
+
+[orchestration]               # tiered models; only used when [llm] enabled = true
+extract_model = "haiku"       # distil raw events into lessons
+judge_model = "haiku"         # first-pass duplicate/complementary triage
+escalate_model = "sonnet"     # second opinion when the first pass is unsure
+draft_model = "sonnet"        # write skill and merge drafts
+review_model = "opus"         # gate for consequential changes
+max_calls_per_run = 40
+max_review_calls = 5
+max_parallel = 2
+budget_usd_per_run = 0.5      # estimated; a run stops once it reaches this
+review_required = true        # autonomous installs of model-drafted skills need a logged reviewer approval
+background = false            # run the smart cycle from SessionStart in a detached process
+distill_batch = 8
+
+[skills]
+managed_dir = ".claude/skills"
+scan_dirs = [".claude/skills"]
+
+[evolution]
+max_attempts = 3              # amendments tried per skill before automation stops
+min_improvement = 0.02
+auto_interval_hours = 24      # automatic evolution cycle at session start, at most this often (0 = off)
+
+[curator]
+interests = []                # e.g. ["python", "docker"]; enables profile-based evidence (optional)
+overlap_threshold = 0.55      # near-duplicate
+related_threshold = 0.3       # similar, needs a human/model judgement
+max_skill_bytes = 20000
+min_age_days = 30             # days of telemetry before usage-based verdicts
+
+[privacy]
+extra_redact_patterns = []    # extra regexes to scrub before anything is stored
+store_prompts = true          # false: user prompts are never written to disk (disables correction learning)

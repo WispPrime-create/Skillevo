@@ -1,0 +1,14 @@
+{
+  "skill_name": "example-skill",
+  "cases": [
+    {
+      "id": "mentions-cache-flag",
+      "prompt": "My docker build keeps using stale layers. What should I do?",
+      "assertions": [
+        {"type": "contains", "value": "no-cache", "target": "skill"},
+        {"type": "not_contains", "value": "TODO", "target": "skill"},
+        {"type": "regex", "value": "docker (builder )?prune", "target": "output"}
+      ]
+    }
+  ]
+}

@@ -1,0 +1,129 @@
+{
+  "source": "ECC v2.2.3 (b38be6a), the 20 skill pairs with TF-IDF similarity >= 0.30",
+  "labeler": "claude-sonnet-5-5, single labeler, from reading both skills' descriptions and headings; NOT reviewed by a human",
+  "definition": "duplicate = one skill is made redundant by the other (deprecated/superseded/same purpose and stack); complementary = different purpose, stack or workflow phase",
+  "pairs": [
+    {
+      "a": "ito-inference",
+      "b": "ito-training",
+      "label": "complementary",
+      "note": "same template, different capability (serving vs training manifests)"
+    },
+    {
+      "a": "orch-change-feature",
+      "b": "orch-fix-defect",
+      "label": "complementary",
+      "note": "different operations"
+    },
+    {
+      "a": "quarkus-verification",
+      "b": "springboot-verification",
+      "label": "complementary",
+      "note": "different frameworks"
+    },
+    {
+      "a": "orch-add-feature",
+      "b": "orch-fix-defect",
+      "label": "complementary",
+      "note": "different operations"
+    },
+    {
+      "a": "orch-add-feature",
+      "b": "orch-change-feature",
+      "label": "complementary",
+      "note": "different operations"
+    },
+    {
+      "a": "homelab-network-readiness",
+      "b": "homelab-network-setup",
+      "label": "complementary",
+      "note": "readiness checklist vs planning guide"
+    },
+    {
+      "a": "homelab-network-readiness",
+      "b": "homelab-vlan-segmentation",
+      "label": "complementary",
+      "note": "checklist vs vendor-specific how-to"
+    },
+    {
+      "a": "orch-change-feature",
+      "b": "orch-refine-code",
+      "label": "complementary",
+      "note": "behavior change vs behavior-preserving refactor"
+    },
+    {
+      "a": "orch-fix-defect",
+      "b": "orch-refine-code",
+      "label": "complementary",
+      "note": "different operations"
+    },
+    {
+      "a": "email-ops",
+      "b": "messages-ops",
+      "label": "complementary",
+      "note": "different surfaces"
+    },
+    {
+      "a": "csharp-testing",
+      "b": "fsharp-testing",
+      "label": "complementary",
+      "note": "different languages"
+    },
+    {
+      "a": "orch-add-feature",
+      "b": "orch-refine-code",
+      "label": "complementary",
+      "note": "different operations"
+    },
+    {
+      "a": "dart-flutter-patterns",
+      "b": "flutter-dart-code-review",
+      "label": "complementary",
+      "note": "patterns vs review checklist"
+    },
+    {
+      "a": "orch-add-feature",
+      "b": "orch-pipeline",
+      "label": "complementary",
+      "note": "operation vs shared engine"
+    },
+    {
+      "a": "customer-billing-ops",
+      "b": "finance-billing-ops",
+      "label": "complementary",
+      "note": "customer support vs finance reporting"
+    },
+    {
+      "a": "homelab-network-setup",
+      "b": "homelab-vlan-segmentation",
+      "label": "complementary",
+      "note": "general setup vs VLAN how-to"
+    },
+    {
+      "a": "quarkus-patterns",
+      "b": "quarkus-tdd",
+      "label": "complementary",
+      "note": "architecture patterns vs testing workflow"
+    },
+    {
+      "a": "autonomous-loops",
+      "b": "continuous-agent-loop",
+      "label": "duplicate",
+      "note": "autonomous-loops says it is retained for compatibility only and points to continuous-agent-loop",
+      "keep": "continuous-agent-loop"
+    },
+    {
+      "a": "benchmark-methodology",
+      "b": "competitive-report-structure",
+      "label": "complementary",
+      "note": "consecutive pipeline stages"
+    },
+    {
+      "a": "continuous-learning",
+      "b": "continuous-learning-v2",
+      "label": "duplicate",
+      "note": "v1 is marked DEPRECATED; v2 is described as a strict superset",
+      "keep": "continuous-learning-v2"
+    }
+  ]
+}
